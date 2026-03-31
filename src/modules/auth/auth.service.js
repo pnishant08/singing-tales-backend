@@ -1,4 +1,4 @@
-import User from "../../models/User.js";
+import User from "../../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { generateOtp } from "../../utils/generateOtp.js";
 import { sendEmail } from "../../utils/sendEmail.js";
