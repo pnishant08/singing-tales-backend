@@ -11,7 +11,7 @@ const productSchema=new mongoose.Schema({
         required:true
     },
     category:{
-        type:string,
+        type:String,
         enum:["Birthday","Aniversary","Wedding","Festival","Custom"],
     },
     image:[String],

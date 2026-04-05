@@ -1,0 +1,13 @@
+import express from "express";
+import * as orderController from "./order.controller.js";
+import { authMiddleware} from "../../middleware/auth.middleware.js";
+
+const router = express.Router();
+
+router.post("/", authMiddleware, orderController.createOrder);
+
+router.get("/my",authMiddleware, orderController.getMyOrders);
+
+router.get("/:id",authMiddleware, orderController.getOrder);
+
+export default router;
