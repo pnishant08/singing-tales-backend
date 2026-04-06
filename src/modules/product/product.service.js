@@ -5,13 +5,13 @@ export const createProduct =async(data)=>{
 };
 
 export const getAllproducts =async(query)=>{
-    const {category,seach}=query;
+    const {category,search}=query;
     const filter={};
     if(category){
         filter.category=category;
     }
     if(seach){
-        filter.title={$regex:seach,$options:"i"};
+        filter.title={$regex:search,$options:"i"};
     }
     return await Product.find(filter);
 };

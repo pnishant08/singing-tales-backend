@@ -1,11 +1,11 @@
 import express from "express";
 import * as ctrl from "./wishList.controller.js";
-import auth from "../../middleware/auth.middleware.js";
+import {authMiddleware} from "../../middleware/auth.middleware.js";
 
 const router = express.Router();
 
-router.get("/", auth, ctrl.getWishlist);
-router.post("/", auth, ctrl.addToWishlist);
-router.delete("/:productId", auth, ctrl.removeFromWishlist);
+router.get("/", authMiddleware, ctrl.getWishlist);
+router.post("/", authMiddleware, ctrl.addToWishlist);
+router.delete("/:productId", authMiddleware, ctrl.removeFromWishlist);
 
 export default router;

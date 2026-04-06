@@ -1,5 +1,5 @@
-import Order from "./order.model.js";
-import Cart from "../cart/cart.model.js";
+import Order from "../../models/order.model.js";
+import Cart from "../../models/cart.model.js";
 
 export const createOrder = async (userId, data) => {
   const cart = await Cart.findOne({ user: userId }).populate("items.product");
@@ -16,7 +16,7 @@ export const createOrder = async (userId, data) => {
     user: userId,
     items: cart.items,
     totalAmount,
-    address: data.address,
+    shippingAddress: data.shippingAddress,
     paymentMethod: data.paymentMethod,
   });
 

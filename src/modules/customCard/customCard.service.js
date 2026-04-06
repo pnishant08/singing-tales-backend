@@ -1,4 +1,4 @@
-import CustomCard from "./customCard.model.js";
+import CustomCard from "../../models/customCard.model.js";
 
 export const create = (userId, data) => {
   return CustomCard.create({ user: userId, ...data });
