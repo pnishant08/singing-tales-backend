@@ -1,17 +1,22 @@
 import CustomCard from "../../models/customCard.model.js";
 
-export const create = (userId, data) => {
-  return CustomCard.create({ user: userId, ...data });
+export const create = async (userId, data) => {
+  return await CustomCard.create({
+    user: userId,
+    ...data,
+  });
 };
 
-export const getMine = (userId) => {
-  return CustomCard.find({ user: userId });
+export const getMine = async (userId) => {
+  return await CustomCard.find({ user: userId });
 };
 
-export const update = (id, data) => {
-  return CustomCard.findByIdAndUpdate(id, data, { new: true });
+export const update = async (id, data) => {
+  return await CustomCard.findByIdAndUpdate(id, data, {
+    new: true,
+  });
 };
 
-export const remove = (id) => {
-  return CustomCard.findByIdAndDelete(id);
+export const remove = async (id) => {
+  return await CustomCard.findByIdAndDelete(id);
 };

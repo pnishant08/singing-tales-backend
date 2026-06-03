@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/", authMiddleware, ctrl.createCustomCard);
 router.get("/", authMiddleware, ctrl.getMyCards);
-router.put("/:id", authMiddleware, ctrl.updateCard);
-router.delete("/:id", authMiddleware, ctrl.deleteCard);
+router.put("/:id", authMiddleware, ctrl.updateCustomCard);
+router.delete("/:id", authMiddleware, ctrl.deleteCustomCard);
 
 export default router;
