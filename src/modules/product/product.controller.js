@@ -1,37 +1,42 @@
 import * as ProductService from "./product.service.js";
 
-export const createProdduct=async(req,res)=>{
-    try{
-        const product=await ProductService.createProduct(req.body);
+export const createProdduct = async (req, res) => {
+    try {
+        const product = await ProductService.createProduct({
+            ...req.body,
+            image: req.file
+                ? [`/uploads/${req.file.filename}`]
+                : [],
+        });
         res.status(201).json(product);
-    }catch(e){
-        res.status(500).json({error:e.message});
-    }   
-};
-
-export const getAllProducts=async(req,res)=>{
-    try{
-        const products=await ProductService.getAllproducts(req.query);
-        res.status(200).json(products);
-    }catch(e){
-        res.status(500).json({error:e.message});
+    } catch (e) {
+        res.status(500).json({ error: e.message });
     }
 };
 
-export const getPoductById=async(req,res)=>{
-    try{
-        const product=await ProductService.getPoductById(req.params.id);
+export const getAllProducts = async (req, res) => {
+    try {
+        const products = await ProductService.getAllproducts(req.query);
+        res.status(200).json(products);
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+};
+
+export const getPoductById = async (req, res) => {
+    try {
+        const product = await ProductService.getPoductById(req.params.id);
         res.status(200).json(product);
-    }catch(e){
-        res.status(500).json({error:e.message});
+    } catch (e) {
+        res.status(500).json({ error: e.message });
     }
 }
 
-export const deleteProduct=async(req,res)=>{
-    try{
+export const deleteProduct = async (req, res) => {
+    try {
         await ProductService.deleteProduct(req.params.id);
-        res.status(200).json({message:"Product deleted"});
-    }catch(e){
-        res.status(500).json({error:e.message});
+        res.status(200).json({ message: "Product deleted" });
+    } catch (e) {
+        res.status(500).json({ error: e.message });
     }
 }

@@ -33,3 +33,7 @@ export const getMyOrders = async (userId) => {
 export const getOrderById = async (orderId) => {
   return await Order.findById(orderId).populate("items.product");
 };
+
+export const getAllOrders = async () => {
+  return await Order.find().sort({ createdAt: -1 });
+};

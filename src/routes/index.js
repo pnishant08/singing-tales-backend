@@ -8,6 +8,7 @@ import orderRoutes from "../modules/order/order.routes.js";
 import wishListRoutes from "../modules/wishlist/wishList.routes.js";
 import reviewRoutes from "../modules/review/review.routes.js";
 import customCardRoutes from "../modules/customCard/customCard.routes.js";
+import adminRoutes from "../modules/admin/admin.routes.js";
 
 const router = express.Router();
 
@@ -19,6 +20,6 @@ router.use("/order", orderRoutes);
 router.use("/wishList", wishListRoutes);
 router.use("/review", reviewRoutes);
 router.use("/custom-card", customCardRoutes);
-
+router.use("/admin", adminRoutes);
 
 export default router;

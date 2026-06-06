@@ -14,3 +14,8 @@ export const getOrder = async (req, res) => {
   const order = await orderService.getOrderById(req.params.id);
   res.json(order);
 };
+
+export const getAllOrders = async (req, res) => {
+  const orders = await orderService.getAllOrders();
+  res.json(orders);
+};

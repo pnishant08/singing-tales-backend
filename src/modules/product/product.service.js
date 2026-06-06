@@ -10,7 +10,7 @@ export const getAllproducts =async(query)=>{
     if(category){
         filter.category=category;
     }
-    if(seach){
+    if(search){
         filter.title={$regex:search,$options:"i"};
     }
     return await Product.find(filter);
