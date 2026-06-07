@@ -6,8 +6,8 @@ import upload  from "../../middleware/upload.middleware.js";
 const router =express.Router();
 
 router.post("/",authMiddleware,adminMiddleware,upload.single("image"),productController.createProdduct);
-router.get("/",authMiddleware,productController.getAllProducts);
-router.get("/:id",authMiddleware,productController.getPoductById);
+router.get("/",productController.getAllProducts);
+router.get("/:id",productController.getPoductById);
 router.delete("/:id",authMiddleware,adminMiddleware,productController.deleteProduct);
 
 export default router;
