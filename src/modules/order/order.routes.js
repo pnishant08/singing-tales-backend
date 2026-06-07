@@ -5,6 +5,8 @@ import { adminMiddleware } from "../../middleware/admin.middleware.js";
 
 const router = express.Router();
 
+router.put("/:id/status",authMiddleware,adminMiddleware, orderController.updateOrderStatus);
+
 router.post("/", authMiddleware, orderController.createOrder);
 
 router.get("/my",authMiddleware, orderController.getMyOrders);

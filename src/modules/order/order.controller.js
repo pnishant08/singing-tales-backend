@@ -19,3 +19,18 @@ export const getAllOrders = async (req, res) => {
   const orders = await orderService.getAllOrders();
   res.json(orders);
 };
+
+export const updateOrderStatus = async (req, res) => {
+  try {
+    const { orderStatus } = req.body;
+
+    const order = await orderService.updateOrderStatus(
+      req.params.id,
+      orderStatus
+    );
+
+    res.status(200).json(order);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+};
