@@ -8,6 +8,7 @@ const router =express.Router();
 router.post("/",authMiddleware,adminMiddleware,upload.single("image"),productController.createProdduct);
 router.get("/",productController.getAllProducts);
 router.get("/:id",productController.getPoductById);
+router.put("/:id",authMiddleware,adminMiddleware,upload.single("image"),productController.updateProduct);
 router.delete("/:id",authMiddleware,adminMiddleware,productController.deleteProduct);
 
 export default router;

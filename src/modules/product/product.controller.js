@@ -36,6 +36,33 @@ export const getPoductById = async (req, res) => {
     }
 }
 
+export const updateProduct = async (req, res) => {
+  try {
+    const updateData = {
+      ...req.body,
+      price: Number(req.body.price),
+    };
+
+    if (req.body.price !== undefined && req.body.price !== "") {
+      updateData.price = Number(req.body.price);
+    } else {
+      delete updateData.price;
+    }
+
+    if (req.file) {
+      updateData.image = `/uploads/${req.file.filename}`;
+    } else if (req.body.image) {
+      updateData.image = req.body.image;
+    }
+
+    const product = await ProductService.updateProduct(req.params.id, updateData);
+
+    res.status(200).json(product);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+};
+
 export const deleteProduct = async (req, res) => {
     try {
         await ProductService.deleteProduct(req.params.id);

@@ -20,6 +20,13 @@ export const getPoductById=async(id)=>{
     return await Product.findById(id);
 }
 
+export const updateProduct = async (id, data) => {
+  return await Product.findByIdAndUpdate(id, data, {
+    new: true,
+    runValidators: true,
+  });
+};
+
 export const deleteProduct=async(id)=>{
     return await Product.findByIdAndDelete(id);
 }
