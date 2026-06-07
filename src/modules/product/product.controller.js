@@ -1,17 +1,21 @@
 import * as ProductService from "./product.service.js";
 
 export const createProdduct = async (req, res) => {
-    try {
-        const product = await ProductService.createProduct({
-            ...req.body,
-            image: req.file
-                ? [`/uploads/${req.file.filename}`]
-                : [],
-        });
-        res.status(201).json(product);
-    } catch (e) {
-        res.status(500).json({ error: e.message });
-    }
+  try {
+    const imageUrl = req.file
+      ? `/uploads/${req.file.filename}`
+      : req.body.image || "";
+
+    const product = await ProductService.createProduct({
+      ...req.body,
+      price: Number(req.body.price),
+      image: imageUrl,
+    });
+
+    res.status(201).json(product);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
 };
 
 export const getAllProducts = async (req, res) => {
