@@ -12,7 +12,14 @@ const productSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        enum: ["Birthday", "Aniversary", "Wedding", "Festival", "Custom"],
+        enum: ["Vintage", "Floral", "Modern", "Minimal", "Luxury"],
+        default: "Vintage",
+    },
+
+    occasion: {
+        type: String,
+        enum: ["Birthday", "Anniversary", "Wedding", "Festival", "Custom"],
+        required: true,
     },
     image: {
         type: String,
