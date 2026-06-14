@@ -1,42 +1,45 @@
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
-    user:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User"
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     },
-    items:[
+    items: [
         {
-            product:{
-                type:mongoose.Schema.Types.ObjectId,
-                ref:"Product"
+            product: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Product"
             },
-            quantity:Number,
-            price:Number,
-            customCard:{
-                type:mongoose.Schema.Types.ObjectId,
-                ref:"CustomCard"
+            quantity: Number,
+            price: Number,
+            customCard: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "CustomCard"
             }
         }
     ],
-    totalAmount:Number,
-    shippingAddress:{
-        address:String,
-        city:String,
-        pincode:String,
-        state:String,
-        country:String
+    totalAmount: Number,
+    shippingAddress: {
+        fullName: String,
+        phone: String,
+        email: String,
+        address: String,
+        city: String,
+        pincode: String,
+        state: String,
+        country: String
     },
-    paymentStatus:{
-        type:String,
-        enum:["pending","success","failed"],
-        default:"pending"
+    paymentStatus: {
+        type: String,
+        enum: ["pending", "success", "failed"],
+        default: "pending"
     },
-    orderStatus:{
-        type:String,
-        enum:["placed","processing","shipped","delivered","cancelled"],
-        default:"placed"
+    orderStatus: {
+        type: String,
+        enum: ["placed", "processing", "shipped", "delivered", "cancelled"],
+        default: "placed"
     }
-}, {timestamps:true});
+}, { timestamps: true });
 
 export default mongoose.model("Order", orderSchema);

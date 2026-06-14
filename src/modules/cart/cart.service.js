@@ -40,10 +40,18 @@ export const updateItem = async (userId, itemId, data) => {
 
 export const removeItem = async (userId, itemId) => {
   const cart = await Cart.findOne({ user: userId });
-  cart.items.id(itemId).remove();
-  await cart.save();
-};
 
+  if (!cart) {
+    throw new Error("Cart not found");
+  }
+  const item = cart.items.id(itemId);
+  if (!item) {
+    throw new Error("Item not found in cart");
+  }
+  cart.items.pull({ _id: itemId });
+  await cart.save();
+  return cart;
+};
 export const clearCart = async (userId) => {
   await Cart.findOneAndUpdate(
     { user: userId },
