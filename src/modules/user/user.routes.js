@@ -6,11 +6,12 @@ import {
   deleteAddress,
 } from "./user.controller.js";
 import { authMiddleware } from "../../middleware/auth.middleware.js";
+import upload from "../../middleware/upload.middleware.js";
 
 const router = express.Router();
 
 router.get("/profile", authMiddleware, getProfile);
-router.put("/profile", authMiddleware, updateProfile);
+router.put("/profile", authMiddleware,upload.single("avatar"), updateProfile);
 
 router.post("/address", authMiddleware, addAddress);
 router.delete("/address/:id", authMiddleware, deleteAddress);
