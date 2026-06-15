@@ -14,7 +14,6 @@ export const updateProfile = async (req, res) => {
     updates.avatar = `/uploads/${req.file.filename}`;
   }
   const user = await service.updateProfileService(req.user._id, updates);
-  console.log(user);
   res.json(user);
 };
 
