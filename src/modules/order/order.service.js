@@ -27,7 +27,7 @@ export const createOrder = async (userId, data) => {
 };
 
 export const getMyOrders = async (userId) => {
-  return await Order.find({ user: userId }) .populate("items.product").sort({ createdAt: -1 });
+  return await Order.find({ user: userId }).populate("items.product").sort({ createdAt: -1 });
 };
 
 export const getOrderById = async (orderId) => {
@@ -35,7 +35,10 @@ export const getOrderById = async (orderId) => {
 };
 
 export const getAllOrders = async () => {
-  return await Order.find().sort({ createdAt: -1 });
+  return await Order.find()
+    .populate("user", "name email")
+    .populate("items.product", "title image price")
+    .sort({ createdAt: -1 });
 };
 
 export const updateOrderStatus = async (orderId, orderStatus) => {

@@ -5,7 +5,15 @@ export const getProfile = (req, res) => {
 };
 
 export const updateProfile = async (req, res) => {
-  const user = await service.updateProfileService(req.user._id, req.body);
+  const updates = {
+    name: req.body.name,
+    username: req.body.username,
+    phone: req.body.phone,
+  };
+  if (req.file) {
+    updates.avatar = `/uploads/${req.file.filename}`;
+  }
+  const user = await service.updateProfileService(req.user._id, updates);
   res.json(user);
 };
 
