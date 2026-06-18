@@ -41,10 +41,19 @@ export const getAllOrders = async () => {
     .sort({ createdAt: -1 });
 };
 
-export const updateOrderStatus = async (orderId, orderStatus) => {
+export const updateOrderStatus = async (orderId, statusData) => {
+  const updateData = {};
+
+  if (statusData.orderStatus) {
+    updateData.orderStatus = statusData.orderStatus;
+  }
+
+  if (statusData.paymentStatus) {
+    updateData.paymentStatus = statusData.paymentStatus;
+  }
   return await Order.findByIdAndUpdate(
     orderId,
-    { orderStatus },
+    updateData,
     {
       new: true,
       runValidators: true,

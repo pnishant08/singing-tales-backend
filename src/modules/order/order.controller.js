@@ -22,11 +22,14 @@ export const getAllOrders = async (req, res) => {
 
 export const updateOrderStatus = async (req, res) => {
   try {
-    const { orderStatus } = req.body;
-
+    const { orderStatus, paymentStatus } = req.body;
     const order = await orderService.updateOrderStatus(
       req.params.id,
-      orderStatus
+      {
+        paymentStatus,
+        orderStatus
+      },
+
     );
 
     res.status(200).json(order);
@@ -34,3 +37,4 @@ export const updateOrderStatus = async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 };
+
