@@ -50,6 +50,7 @@ const userSchema = new mongoose.Schema(
     },
     phone: String,
     avatar: String,
+    avatarPublicId: String,
     addresses: [addressSchema],
     role:
     {
